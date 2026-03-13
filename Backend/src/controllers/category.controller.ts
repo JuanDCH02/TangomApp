@@ -13,6 +13,7 @@ export default class CategoryController {
           return res.status(500).json({ error: "No se puedo crear la categoria" });
         }
     };
+    
     static getAllCategory = async(req: Request, res:Response) => {
         const cats = await prisma.category.findMany();
         return res.json(cats);
