@@ -1,6 +1,6 @@
 import {z} from 'zod'
 import type { OrderitemSchema, OrderNoteSchema, OrderSchema } from "../schemas/order.schema"
-import type { CategorySchema, DashboardProductSchema, ProductSchema } from '../schemas/product.schema'
+import type { CategoriesSchema, CategorySchema, DashboardProductSchema, ProductSchema } from '../schemas/product.schema'
 
 
 
@@ -18,3 +18,4 @@ export type DashboardProduct = z.infer<typeof DashboardProductSchema>;
 export type CreateProductInput = Pick<Product, 'name'|'price'|'stock'|'categoryId'|'imageUrl'>;
 
 export type Category = z.infer<typeof CategorySchema>;
+export type Categories = z.infer<typeof CategoriesSchema>;

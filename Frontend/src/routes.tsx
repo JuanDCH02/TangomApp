@@ -4,6 +4,7 @@ import { AboutUsPage } from "./pages/AboutUsPage";
 import { HomePage } from "./pages/homePage";
 import { ContactPage } from "./pages/contactPage";
 import { WhereAre } from "./pages/WhereAre";
+import { AddProductForm } from "./components/forms/AddProductForm";
 
 
 
@@ -18,6 +19,7 @@ export const router = () => {
                         <Route path="/contacto" element={ <ContactPage/> } />
                         <Route path="/sobre-nosotros" element={ <AboutUsPage/> } />
                         <Route path="/donde-estamos" element={ <WhereAre/> } />
+                        <Route path="/admin/crear-producto" element={ <AddProductForm/> } />
 
                     </Route>
 

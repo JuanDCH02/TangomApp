@@ -9,8 +9,9 @@ import { Request, Response } from "express";
 export default class ProductController {
 
     static createProduct = async(req: Request, res:Response) => {
-        const { name, price, stock, imageUrl, categoryId } = req.body;
-            const newProduct = await prisma.product.create({
+        try {
+            const { name, price, stock, imageUrl, categoryId } = req.body;
+            await prisma.product.create({
                 data:{
                     name,
                     price,
@@ -19,7 +20,11 @@ export default class ProductController {
                     categoryId
                 }
             })
-        return res.json(newProduct);
+            return res.status(201).send('Producto creado');
+            
+        } catch (error) {
+            return res.status(400).json({ error: 'No se pudo crear el producto' });
+        }
     };
 
     static getAllProducts = async(req: Request, res: Response) => {

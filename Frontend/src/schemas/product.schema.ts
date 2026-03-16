@@ -25,5 +25,6 @@ export const DashboardProductSchema = z.array(
 export const CategorySchema = z.object({
     id: z.number(),
     name: z.string(),
-    products: z.array(ProductSchema)
 })
+
+export const CategoriesSchema = z.array(CategorySchema)
