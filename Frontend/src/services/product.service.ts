@@ -1,6 +1,7 @@
+
 import { isAxiosError } from "axios";
 import { api } from "../lib";
-import { DashboardProductSchema, ProductSchema } from "../schemas/product.schema";
+import { ProductListSchema, ProductSchema } from "../schemas/product.schema";
 import type { ProductFormData } from "../types";
 
 
@@ -8,7 +9,7 @@ import type { ProductFormData } from "../types";
 export const getAllProducts = async()=> {
     try {
         const {data} = await api('/products')
-        const res = DashboardProductSchema.safeParse(data)
+        const res = ProductListSchema.safeParse(data)
         if(!res.success){
             console.error(res.error); 
             throw new Error("Error de validación de datos");   

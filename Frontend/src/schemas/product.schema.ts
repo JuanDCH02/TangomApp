@@ -20,6 +20,8 @@ export const ProductFormSchema = ProductSchema.pick({
     categoryId: true 
 })
 
+export const ProductListSchema = z.array(ProductSchema)
+
 export const DashboardProductSchema = z.array(
     ProductSchema.pick({
         id: true,
