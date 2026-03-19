@@ -1,4 +1,5 @@
 
+
 import { prisma } from "../lib/prisma";
 import { Request, Response } from "express";
 
@@ -12,13 +13,7 @@ export default class ProductController {
         try {
             const { name, price, stock, imageUrl, categoryId } = req.body;
             await prisma.product.create({
-                data:{
-                    name,
-                    price,
-                    stock,
-                    imageUrl,
-                    categoryId
-                }
+                data:{ name, price, stock, imageUrl, categoryId }
             })
             return res.status(201).send('Producto creado');
             
@@ -26,6 +21,22 @@ export default class ProductController {
             return res.status(400).json({ error: 'No se pudo crear el producto' });
         }
     };
+
+    static editProduct = async(req: Request, res:Response) => {
+        
+        try {
+            const { name, price, stock, imageUrl, categoryId } = req.body;
+
+            await prisma.product.update({
+                where:{ id: Number(req.params.id) },
+                data: { name, price, stock, imageUrl, categoryId }
+            })
+            return res.json({ message: 'Producto actualizado' });
+
+        } catch (error) {
+            return res.status(400).json({ error: 'No se pudo actualizar el producto' });
+        }
+    }
 
     static getAllProducts = async(req: Request, res: Response) => {
         const products = await prisma.product.findMany({

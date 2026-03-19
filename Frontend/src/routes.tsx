@@ -1,10 +1,11 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { AppLayout } from "./layout/appLayout";
 import { AboutUsPage } from "./pages/AboutUsPage";
-import { HomePage } from "./pages/homePage";
-import { ContactPage } from "./pages/contactPage";
+import { HomePage } from "./pages/HomePage";
+import { ContactPage } from "./pages/ContactPage";
 import { WhereAre } from "./pages/WhereAre";
-import { AddProductForm } from "./components/forms/AddProductForm";
+import { CreateProductPage } from "./pages/CreateProductPage";
+import { EditProductPage } from "./pages/EditProductPage";
 
 
 
@@ -19,7 +20,8 @@ export const router = () => {
                         <Route path="/contacto" element={ <ContactPage/> } />
                         <Route path="/sobre-nosotros" element={ <AboutUsPage/> } />
                         <Route path="/donde-estamos" element={ <WhereAre/> } />
-                        <Route path="/admin/crear-producto" element={ <AddProductForm/> } />
+                        <Route path="/admin/crear-producto" element={ <CreateProductPage/> } />
+                        <Route path="/admin/editar-producto/:id" element={ <EditProductPage/> } />
 
                     </Route>
 

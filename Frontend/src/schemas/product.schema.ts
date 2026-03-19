@@ -9,7 +9,15 @@ export const ProductSchema = z.object({
     price: z.number().positive(),
     imageUrl: z.string().optional(),
     categoryId: z.int(),
-    updateAt: z.string(),
+    updatedAt: z.string(),
+})
+
+export const ProductFormSchema = ProductSchema.pick({
+    name: true, 
+    price: true, 
+    stock: true, 
+    imageUrl: true, 
+    categoryId: true 
 })
 
 export const DashboardProductSchema = z.array(
