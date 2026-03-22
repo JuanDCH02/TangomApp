@@ -1,10 +1,9 @@
 import { useQuery } from "@tanstack/react-query"
 import { getAllProducts } from "../services/product.service"
-import { DashboardProductCard } from "../components/cards/DashboardProductCard"
+import { AdminProductCard } from "../components/cards/AdminProductCard"
 
 
-
-export const HomePage = () => {
+export const AdminPage = () => {
 
     const {data, isLoading, error} = useQuery({
         queryKey:['productos'],
@@ -19,10 +18,9 @@ export const HomePage = () => {
                 <h4 className="text-4xl text-slate-600 font-semibold">Cargando</h4>
             )}
 
-
-            <div className="w-4/5 mx-auto my-10 grid grid-cols-3 gap-5 ">
+            <div className="space-y-3 ">
                 {data.map((p) => (
-                    <DashboardProductCard key={p.id} producto={p}/>
+                    <AdminProductCard key={p.id} producto={p}/>
 
                 ))}
 

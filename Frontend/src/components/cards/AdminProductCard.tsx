@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom"
-import type { DashboardProduct, Product } from "../../types"
+import type { Product } from "../../types"
 import { formatDate } from "../../utils"
 
 
@@ -8,20 +8,19 @@ interface ProductCard {
     producto : Product
 }
 
-export const ProductCard = ({producto} : ProductCard) => {
+export const AdminProductCard = ({producto} : ProductCard) => {
 
     const nav = useNavigate()
-
-    const GoEditPage = ()=> {
-        nav(`/products/${producto.id}`)
-    }
-
     return (
-        <div className="flex justify-between items-center p-3 border border-slate-300 rounded-lg hover:shadow-md hover:bg-slate-100
+        <div className="flex justify-between w-2/3 mx-auto items-center p-3 border border-slate-300 rounded-lg hover:shadow-md hover:bg-slate-100
             hover:cursor-pointer">
+
+            <img src="../../../public/poly v.webp" height={100} width={90} className="rounded" alt="producto-img" />
             
             <div>
-                <h3 className="font-semibold text-xl capitalize hover:underline hover:font-bold" onClick={GoEditPage}
+
+                <h3 className="font-semibold text-xl capitalize hover:underline hover:font-bold" 
+                    onClick={()=> nav(`/admin/editar-producto/${producto.id}`)}
                     > {producto.name} 
                 </h3>
                 <div className="flex gap-5">
@@ -34,10 +33,10 @@ export const ProductCard = ({producto} : ProductCard) => {
             </div>
 
             <div className=" flex gap-5 font-semibold">
-                <Link className="border border-blue-500 p-2 rounded-xl bg-blue-200" to={`/editar-producto/${producto.id}`}
+                <Link className="border border-blue-500 p-2 rounded-xl bg-blue-200" to={`/admin/editar-producto/${producto.id}`}
                     >editar
                 </Link>
-                <Link className="border border-red-500 p-2 rounded-xl bg-red-200" to={`/editar-producto/${producto.id}`}
+                <Link className="border border-red-500 p-2 rounded-xl bg-red-200" to={`/admin/editar-producto/${producto.id}`}
                     >eliminar
                 </Link>
             </div>

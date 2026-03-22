@@ -1,6 +1,6 @@
-import { useMutation, useQuery } from "@tanstack/react-query"
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { ProductForm } from "../components/forms/ProductForm"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { editProduct, getProductById } from "../services/product.service"
 import type { ProductFormData } from "../types"
 
@@ -8,24 +8,27 @@ import type { ProductFormData } from "../types"
 export const EditProductPage = () => {
 
     const {id} = useParams()
-    
-        const { data } = useQuery({
-            queryKey: ['ProductoEdit', id],
-            queryFn:()=> getProductById(Number(id))
-        })
-    
-        const { mutate } = useMutation({
-            mutationFn: editProduct,
-            onError(error){
-                console.log(error)
-            },
-            onSuccess(data){
-                console.log(data)
-            }
-    
-        })
+    const queryClient = useQueryClient()
+    const nav = useNavigate()
 
-         const onSubmit = (formData : ProductFormData) => {
+    const { data } = useQuery({
+        queryKey: ['ProductoEdit', id],
+        queryFn:()=> getProductById(Number(id))
+    })  
+    const { mutate } = useMutation({
+        mutationFn: editProduct,
+        onError(error){
+            console.log(error)
+        },
+        onSuccess(data){
+            console.log(data)
+            nav('/admin/productos')
+            queryClient.invalidateQueries({queryKey:['productos']})
+            queryClient.invalidateQueries({queryKey:['ProductoEdit', id]})
+        }   
+    })
+
+    const onSubmit = (formData : ProductFormData) => {
         mutate({ formData: { ...formData }, id: Number(id) })
     }
 
