@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query"
-import { ProductForm } from "../components/forms/ProductForm"
-import { createProduct } from "../services/product.service"
-import type { ProductFormData } from "../types"
+import { ProductForm } from "../../components/forms/ProductForm"
+import { createProduct } from "../../services/product.service"
+import type { ProductFormData } from "../../types"
 
 
 export const CreateProductPage = () => {

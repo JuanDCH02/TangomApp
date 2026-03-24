@@ -1,8 +1,8 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
-import { ProductForm } from "../components/forms/ProductForm"
+import { ProductForm } from "../../components/forms/ProductForm"
 import { useNavigate, useParams } from "react-router-dom"
-import { editProduct, getProductById } from "../services/product.service"
-import type { ProductFormData } from "../types"
+import { editProduct, getProductById } from "../../services/product.service"
+import type { ProductFormData } from "../../types"
 
 
 export const EditProductPage = () => {

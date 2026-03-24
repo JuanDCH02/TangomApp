@@ -10,7 +10,7 @@ interface ProductCard {
 export const DashboardProductCard = ({producto} : ProductCard) => {
 
     return (
-        <div className="h-100 w-80 mx-auto items-center p-3 border space-y-3 bg-blue-100 border-slate-300 rounded-lg hover:shadow-md
+        <div className="h-100 w-75 mx-auto items-center p-3 border space-y-3 bg-blue-100 border-slate-300 rounded-lg hover:shadow-md
             hover:cursor-pointer">
             
             <div>

@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query"
-import { getAllProducts } from "../services/product.service"
-import { AdminProductCard } from "../components/cards/AdminProductCard"
+import { getAllProducts } from "../../services/product.service"
+import { AdminProductCard } from "../../components/cards/AdminProductCard"
 import { Link } from "react-router-dom"
 
 

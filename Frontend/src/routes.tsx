@@ -1,15 +1,13 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { AppLayout } from "./layout/appLayout";
-import { AboutUsPage } from "./pages/AboutUsPage";
+import { AboutUsPage } from "./pages/Navigation/AboutUsPage";
 import { HomePage } from "./pages/HomePage";
-import { ContactPage } from "./pages/ContactPage";
-import { WhereAre } from "./pages/WhereAre";
-import { CreateProductPage } from "./pages/CreateProductPage";
-import { EditProductPage } from "./pages/EditProductPage";
-import { AdminPage } from "./pages/AdminPage";
+import { ContactPage } from "./pages/Navigation/ContactPage";
+import { WhereAre } from "./pages/Navigation/WhereAre";
+import { AdminPage } from "./pages/Admin/AdminPage";
 import { ConfirmDelete } from "./components/forms/ConfirmDelete";
-
-
+import { CreateProductPage } from "./pages/Admin/CreateProductPage";
+import { EditProductPage } from "./pages/Admin/EditProductPage";
 
 
 
