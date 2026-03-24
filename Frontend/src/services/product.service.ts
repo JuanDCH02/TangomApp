@@ -64,3 +64,14 @@ export const editProduct= async({formData, id}:{formData: ProductFormData,id: nu
         }
     }
 }
+export const deleteProduct= async( id: number) => {
+    try {
+        const {data} = await api.delete<string>(`/products/${id}`)
+        return data
+        
+    } catch (error) {
+        if(isAxiosError(error) && error.response){
+            throw new Error(error.response.data.error)
+        }
+    }
+}

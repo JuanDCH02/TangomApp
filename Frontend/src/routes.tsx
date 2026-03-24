@@ -7,6 +7,7 @@ import { WhereAre } from "./pages/WhereAre";
 import { CreateProductPage } from "./pages/CreateProductPage";
 import { EditProductPage } from "./pages/EditProductPage";
 import { AdminPage } from "./pages/AdminPage";
+import { ConfirmDelete } from "./components/forms/ConfirmDelete";
 
 
 
@@ -22,9 +23,10 @@ export const router = () => {
                         <Route path="/contacto" element={ <ContactPage/> } />
                         <Route path="/sobre-nosotros" element={ <AboutUsPage/> } />
                         <Route path="/donde-estamos" element={ <WhereAre/> } />
-                        <Route path="/admin/productos" element={ <AdminPage/> } />
+                        <Route path="/admin" element={ <AdminPage/> } />
                         <Route path="/admin/crear-producto" element={ <CreateProductPage/> } />
                         <Route path="/admin/editar-producto/:id" element={ <EditProductPage/> } />
+                        <Route path="/admin/eliminar-producto/:id" element={ <ConfirmDelete/> } />
 
                     </Route>
 

@@ -36,7 +36,7 @@ export const AdminProductCard = ({producto} : ProductCard) => {
                 <Link className="border border-blue-500 p-2 rounded-xl bg-blue-200" to={`/admin/editar-producto/${producto.id}`}
                     >editar
                 </Link>
-                <Link className="border border-red-500 p-2 rounded-xl bg-red-200" to={`/admin/editar-producto/${producto.id}`}
+                <Link className="border border-red-500 p-2 rounded-xl bg-red-200" to={`/admin/eliminar-producto/${producto.id}`}
                     >eliminar
                 </Link>
             </div>
