@@ -22,7 +22,7 @@ export const AppLayout = () => {
             </nav>
         </div>
 
-        <main className='p-10'>
+        <main className='p-10 my-10'>
             <Outlet></Outlet>
 
         </main>

@@ -22,7 +22,7 @@ export const EditProductPage = () => {
         },
         onSuccess(data){
             console.log(data)
-            nav('/admin/productos')
+            nav('/admin/')
             queryClient.invalidateQueries({queryKey:['productos']})
             queryClient.invalidateQueries({queryKey:['ProductoEdit', id]})
         }   

@@ -5,8 +5,8 @@ export const WhereAre = () => {
     <>
 
         <h2 className="flex flex-col text-3xl font-black text-center my-6 text-shadow-lg/20">
-            Estamos ubicados en México 781, CABA, Argentina.
-            <span className="text-xl text-center font-bold text-blue-600">entre piedras y chacabuco</span>
+            Estamos ubicados en MÉXICO 781, CABA, Argentina.
+            <span className="text-xl text-center font-bold text-blue-600">entre piedras y chacabuco.</span>
         </h2>
 
         <p className="text-center mb-8">
