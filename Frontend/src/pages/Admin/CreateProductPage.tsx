@@ -2,6 +2,7 @@ import { useMutation } from "@tanstack/react-query"
 import { ProductForm } from "../../components/forms/ProductForm"
 import { createProduct } from "../../services/product.service"
 import type { ProductFormData } from "../../types"
+import { toast } from "sonner"
 
 
 export const CreateProductPage = () => {
@@ -10,13 +11,13 @@ export const CreateProductPage = () => {
     const { mutate } = useMutation({
         mutationFn: createProduct,
         onError(error){
-            console.log(error)
+            toast.error(error.message)
         },
         onSuccess(data){
-            console.log(data)
+            toast.success(data)
+            window.history.back()
         }
-
-    })
+    }) 
 
     const onSubmit = (data : ProductFormData) => {
         mutate(data)

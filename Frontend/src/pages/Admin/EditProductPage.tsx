@@ -3,6 +3,7 @@ import { ProductForm } from "../../components/forms/ProductForm"
 import { useNavigate, useParams } from "react-router-dom"
 import { editProduct, getProductById } from "../../services/product.service"
 import type { ProductFormData } from "../../types"
+import { toast } from "sonner"
 
 
 export const EditProductPage = () => {
@@ -18,10 +19,11 @@ export const EditProductPage = () => {
     const { mutate } = useMutation({
         mutationFn: editProduct,
         onError(error){
-            console.log(error)
+            toast.error(error.message)
         },
         onSuccess(data){
-            console.log(data)
+            toast.success(data)
+            window.history.back()
             nav('/admin/')
             queryClient.invalidateQueries({queryKey:['productos']})
             queryClient.invalidateQueries({queryKey:['ProductoEdit', id]})

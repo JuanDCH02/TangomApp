@@ -4,11 +4,11 @@ import { z } from "zod";
 
 export const ProductSchema = z.object({
     id: z.number(),
-    name: z.string().min(3),
+    name: z.string(),
     stock: z.number().int().nonnegative(),
     price: z.number().positive(),
     imageUrl: z.string().optional(),
-    categoryId: z.int(),
+    categoryId: z.number(),
     updatedAt: z.string(),
 })
 

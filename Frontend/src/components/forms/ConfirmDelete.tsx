@@ -1,6 +1,8 @@
 import { useMutation } from "@tanstack/react-query"
 import { deleteProduct } from "../../services/product.service"
 import { useParams } from "react-router-dom"
+import { RiDeleteBin6Fill } from "react-icons/ri";
+import { toast } from "sonner";
 
 
 
@@ -13,10 +15,15 @@ export const ConfirmDelete = () => {
     const { mutate } = useMutation({
             mutationFn: deleteProduct,
             onError(error){
-                console.log(error)
+                toast.error(error.message, {
+                    icon:<RiDeleteBin6Fill className='text-lg text-red-700' />
+                })
+                window.history.back()
             },
             onSuccess(data){
-                console.log(data)
+                toast.success(data, {
+                    icon:<RiDeleteBin6Fill className='text-lg text-green-700' />
+                })
                 window.history.back()
             }
     

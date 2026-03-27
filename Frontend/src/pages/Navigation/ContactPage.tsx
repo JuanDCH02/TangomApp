@@ -1,4 +1,5 @@
-
+import { toast } from "sonner";
+import { MdMarkEmailRead, MdEmail } from "react-icons/md";
 
 export const ContactPage = () => {
 
@@ -18,14 +19,22 @@ export const ContactPage = () => {
 
         if (response.ok) {
             form.reset();
-            console.log('Consulta enviada con éxito');
+            toast.success('Consulta Enviada', {
+            description:'Nos pondremos en contacto contigo',
+            icon:<MdMarkEmailRead className='text-lg text-green-700' />
+        });
         } else {
-            console.log('Error al enviar la consulta');
+            toast.error('Error en la Consulta ', {
+            description:'Intentalo nuevamente',
+            icon:<MdEmail className='text-lg text-red-700' />
+        });
         }
     }
 
+
     return (
         <div className="flex flex-col items-center justify-center my-8">
+            
 
             <h2 className="flex flex-col text-3xl font-black text-center my-6 text-shadow-lg/20">
                 Puedes ponerte en contacto con nostros con el siguiente formulario:
