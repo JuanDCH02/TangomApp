@@ -8,6 +8,7 @@ import { AdminPage } from "./pages/Admin/AdminPage";
 import { ConfirmDelete } from "./components/forms/ConfirmDelete";
 import { CreateProductPage } from "./pages/Admin/CreateProductPage";
 import { EditProductPage } from "./pages/Admin/EditProductPage";
+import { OrderPanel } from "./components/order/OrderPanel";
 
 
 
@@ -21,6 +22,7 @@ export const router = () => {
                         <Route path="/contacto" element={ <ContactPage/> } />
                         <Route path="/sobre-nosotros" element={ <AboutUsPage/> } />
                         <Route path="/donde-estamos" element={ <WhereAre/> } />
+                        <Route path="/cotizacion" element={ <OrderPanel/> } />
                         <Route path="/admin" element={ <AdminPage/> } />
                         <Route path="/admin/crear-producto" element={ <CreateProductPage/> } />
                         <Route path="/admin/editar-producto/:id" element={ <EditProductPage/> } />

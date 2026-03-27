@@ -1,13 +1,14 @@
-import { Link } from "react-router-dom"
-import type { Product } from "../../types"
+
+import type { Product, Order } from "../../types"
 
 
 
 interface ProductCard {
     producto : Product
+    agregarOrden: (product: Product) => void
 }
 
-export const DashboardProductCard = ({producto} : ProductCard) => {
+export const DashboardProductCard = ( {producto, agregarOrden} : ProductCard ) => {
 
     return (
         <div className="h-100 w-75 mx-auto items-center p-3 border space-y-3 bg-blue-100 border-slate-300 rounded-lg hover:shadow-md
@@ -31,10 +32,10 @@ export const DashboardProductCard = ({producto} : ProductCard) => {
 
             </div>
 
-            <Link to={''} className="text-blue-500 font-bold border rounded p-2 hover:text-blue-700">
-                Ver detalles
-            </Link>
+            <button onClick={() => agregarOrden( producto )}
+                className="text-blue-500 font-bold border rounded p-2 hover:text-blue-700">
+                Agregar a orden
+            </button>
 
         </div>
-    )
-}
+)}

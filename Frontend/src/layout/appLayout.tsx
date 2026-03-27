@@ -19,6 +19,10 @@ export const AppLayout = () => {
                     className='text-white font-medium ' 
                     >Donde estamos
                 </Link>
+                <Link to={'/cotizacion'} 
+                    className='text-white font-medium ' 
+                    >Cotizaciones
+                </Link>
             </nav>
         </div>
 
