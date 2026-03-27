@@ -1,18 +1,19 @@
 
-import type { Product, Order } from "../../types"
+import { OrderStore } from "../../store/OrderStore"
+import type { Product } from "../../types"
 
 
 
 interface ProductCard {
     producto : Product
-    agregarOrden: (product: Product) => void
 }
 
-export const DashboardProductCard = ( {producto, agregarOrden} : ProductCard ) => {
+export const DashboardProductCard = ( {producto} : ProductCard ) => {
+
+    const {addToOrder} = OrderStore()
 
     return (
-        <div className="h-100 w-75 mx-auto items-center p-3 border space-y-3 bg-blue-100 border-slate-300 rounded-lg hover:shadow-md
-            hover:cursor-pointer">
+        <div className="h-100 w-75 mx-auto items-center p-3 border space-y-3 bg-blue-100 border-slate-300 rounded-lg hover:shadow-md">
             
             <div>
                 <img src="../../../public/poly v.webp" className="h-50 rounded" alt="producto-img" />
@@ -32,8 +33,8 @@ export const DashboardProductCard = ( {producto, agregarOrden} : ProductCard ) =
 
             </div>
 
-            <button onClick={() => agregarOrden( producto )}
-                className="text-blue-500 font-bold border rounded p-2 hover:text-blue-700">
+            <button onClick={() => addToOrder( producto )}
+                className="text-blue-500 font-bold border rounded p-2 hover:cursor-pointer hover:text-blue-700">
                 Agregar a orden
             </button>
 

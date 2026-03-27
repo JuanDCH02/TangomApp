@@ -1,7 +1,11 @@
 
 import { Link, Outlet } from 'react-router-dom'
+import { OrderStore } from '../store/OrderStore'
 
 export const AppLayout = () => {
+
+    const { order } = OrderStore()
+
     return (
         <>
         <div className='p-10 flex flex-col md:flex-row justify-evenly items-center bg-blue-700 '>
@@ -21,7 +25,7 @@ export const AppLayout = () => {
                 </Link>
                 <Link to={'/cotizacion'} 
                     className='text-white font-medium ' 
-                    >Cotizaciones
+                    >Cotizaciones ({order.length})
                 </Link>
             </nav>
         </div>

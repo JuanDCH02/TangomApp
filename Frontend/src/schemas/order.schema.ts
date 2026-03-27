@@ -8,6 +8,7 @@ export const OrderNoteSchema = z.object({
 })
 
 export const OrderItemSchema = z.object({
+    name: z.string(),
     productId: z.int(),
     quantity: z.int(),
     price: z.number(),
