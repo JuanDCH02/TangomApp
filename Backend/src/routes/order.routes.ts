@@ -7,9 +7,9 @@ import OrderNoteController from "../controllers/orderNote.controller";
 const orderRouter = Router();
 
 orderRouter.post( "/",
+    body('email').notEmpty().isEmail().withMessage('El email es obligatorio'),
     body("items").isArray({ min: 1 }).withMessage("items must be a nonempty array"),
-    body("items.*.productId").isInt().withMessage("productId must be integer"),
-    body("items.*.quantity").isInt({ min: 1 }).withMessage("quantity must be positive integer"),
+    body("items.*.quantity").isInt({ min: 1 }).withMessage("cantidad de productos debe ser al menos 1"),
     handleInputErrors,
     OrderController.createOrder
 );

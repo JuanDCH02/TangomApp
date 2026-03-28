@@ -7,7 +7,7 @@ export class OrderController {
 
     static createOrder = async (req: Request, res: Response) => {
         try {
-            const { items } = req.body;
+            const { items, email } = req.body;
 
             if (!Array.isArray(items) || items.length === 0) {
                 return res.status(400).json({ error: 'la orden no puede estar vacia' });
@@ -24,29 +24,20 @@ export class OrderController {
             let total = 0;
             const orderItemsData = items.map((i: { productId: number; quantity: number }) => {
                 const product = products.find(p => p.id === Number(i.productId))!;
+
                 const quantity = Number(i.quantity);
                 const price = product.price;
                 total += price * quantity;
-                return {
-                    productId: product.id,
-                    quantity,
-                    price,
-                };
+
+                return { productId: product.id, quantity, price } 
             });
 
-            const order = await prisma.order.create({
-                data: {
-                    total,
-                    items: {
-                        create: orderItemsData,
-                    },
-                },
-                include: {
-                    items: true,
-                },
+            await prisma.order.create({
+                data: { total, email, items: { create: orderItemsData } },
+                include: { items: true }
             });
 
-            return res.status(201).json(order);
+            return res.status(201).send('Cotización solicitada con éxito');
         } catch (err) {
             console.error(err);
             return res.status(500).json({ error: 'No se puedo crear la órden' });

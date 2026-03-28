@@ -55,6 +55,7 @@ model Order {
     status      OrderStatus @default(PENDING)
 
     total       Float
+    email       String
 
     items       OrderItem[]
     notes       OrderNote[]
