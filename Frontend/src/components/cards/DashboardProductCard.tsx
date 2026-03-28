@@ -34,8 +34,8 @@ export const DashboardProductCard = ( {producto} : ProductCard ) => {
             </div>
 
             <button onClick={() => addToOrder( producto )}
-                className="text-blue-500 font-bold border rounded p-2 hover:cursor-pointer hover:text-blue-700">
-                Agregar a orden
+                className="p-2.5 text-blue-700 font-bold rounded hover:cursor-pointer hover:bg-blue-700 hover:text-white transition-all "
+                >Agregar a orden
             </button>
 
         </div>
