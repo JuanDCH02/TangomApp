@@ -31,7 +31,7 @@ export const AdminOrderCard = ({order} : OrderCard) => {
                 <Link className="border border-blue-500 p-2 rounded-xl bg-blue-200" to={`/admin/orden/${order.id}`}
                     >Ver Detalle
                 </Link>
-                <Link className="border border-green-700 p-2 rounded-xl bg-green-200" to={`/admin/orden/${order.id}`}
+                <Link className="border border-green-700 p-2 rounded-xl bg-green-200" to={`/admin/orden/${order.id}/notas`}
                     >Ver Notas
                 </Link>
                 

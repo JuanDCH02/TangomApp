@@ -1,3 +1,4 @@
+
 import { Router } from "express";
 import { body, param } from "express-validator";
 import { handleInputErrors } from "../middleware/validate";
@@ -20,6 +21,12 @@ orderRouter.get('/:id',
     param("id").isInt().withMessage("ID de orden debe ser un número entero"),
     handleInputErrors,
     OrderController.getOrderById
+);
+
+orderRouter.get('/:id/notes', 
+    param("id").isInt().withMessage("ID de orden debe ser un número entero"),
+    handleInputErrors,
+    OrderNoteController.getOrderNotes
 );
 
 orderRouter.patch( "/:id/status",

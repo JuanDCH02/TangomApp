@@ -22,7 +22,7 @@ export const OrderDetail = () => {
                 <h2 className="text-center text-2xl text-slate-500 font-bold"> Detalle de la Orden </h2>
                 <section>
                     <p className="text-center italic">Items de la orden: {data.items.length}</p>
-                    <ul className="space-y-2 my-2">
+                    <ul className="space-y-2 my-2 max-h-70 overflow-y-scroll">
                         {data.items.map((item) => (
                             <li key={item.id} className="text-slate-600 text-lg text-center font-semibold">
                                 {item.product.name} - Cantidad: {item.quantity} - Precio: ${item.price.toFixed(2)}

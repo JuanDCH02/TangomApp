@@ -2,12 +2,15 @@
 import { z } from "zod";
 import { ProductSchema } from './product.schema';
 
+
 export const OrderNoteSchema = z.object({
     id: z.number(),
     orderId: z.number(),
     content: z.string(),
     createdAt: z.string(),
 })
+
+export const OrderNoteListSchema = z.array(OrderNoteSchema)
 
 export const OrderItemSchema = z.object({
     name: z.string(),

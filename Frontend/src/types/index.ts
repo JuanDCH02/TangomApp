@@ -15,6 +15,10 @@ export type DashboardProduct = z.infer<typeof DashboardProductSchema>;
 
 
 export type ProductFormData = z.infer<typeof ProductFormSchema>
+export type OrderNoteFormData = {
+    id:string,
+    content:string
+}
 
 export type Category = z.infer<typeof CategorySchema>;
 export type Categories = z.infer<typeof CategoriesSchema>;

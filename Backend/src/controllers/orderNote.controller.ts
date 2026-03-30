@@ -5,6 +5,22 @@ import { Request, Response } from "express";
 
 export default class OrderNoteController {
 
+
+    static getOrderNotes = async (req: Request, res: Response) => {
+        try {
+            const orderId = Number(req.params.id);
+            const notes = await prisma.orderNote.findMany({
+                where: { orderId },
+                orderBy: { createdAt: 'asc' }
+            });
+
+            return res.json(notes);
+        } catch (err) {
+            console.error(err);
+            return res.status(500).json({ error: 'No se pudieron obtener las notas' });
+        }
+    }
+
     static createNote = async (req: Request, res: Response) => {
         try {
             const { content } = req.body;
@@ -19,7 +35,7 @@ export default class OrderNoteController {
                 }
             });
 
-            return res.status(201).json(note);
+            return res.status(201).send('Nota Creada Exitosamente');
         } catch (err) {
             console.error(err);
             return res.status(500).json({ error: 'No se pudo crear la nota' });
