@@ -1,16 +1,35 @@
 
 import { isAxiosError } from "axios";
 import { api } from "../lib";
-import { OrderSchema } from "../schemas/order.schema";
+import { OrderListSchema, OrderSchema } from "../schemas/order.schema";
 import type { OrderItem } from "../types";
 
 
 
 
 
-export const getOrder = async()=> {
+export const getAllOrders = async()=> {
     try {
-        const {data} = await api('/products')
+        const {data} = await api('/orders')
+        const res = OrderListSchema.safeParse(data)
+        if(!res.success){
+            console.error(res.error); 
+            throw new Error("Error de validación de datos");   
+        } 
+        return res.data
+
+
+    } catch (error) {
+        if(isAxiosError(error) && error.response){
+            throw new Error(error.response.data.error)
+        }
+    }
+}
+
+export const getOrderById = async(id: number)=> {
+    try {
+        const {data} = await api(`/orders/${id}`)
+        console.log('Data from API:', data)
         const res = OrderSchema.safeParse(data)
         if(!res.success){
             console.error(res.error); 
@@ -23,6 +42,7 @@ export const getOrder = async()=> {
         if(isAxiosError(error) && error.response){
             throw new Error(error.response.data.error)
         }
+        throw new Error("Error inesperado al obtener la orden")
     }
 }
 

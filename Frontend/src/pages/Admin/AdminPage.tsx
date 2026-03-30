@@ -1,23 +1,22 @@
-import { useQuery } from "@tanstack/react-query"
-import { getAllProducts } from "../../services/product.service"
-import { AdminProductCard } from "../../components/cards/AdminProductCard"
-import { Link } from "react-router-dom"
+
+import { Link, useSearchParams } from "react-router-dom"
+import { ProductsTable } from "../../components/admin/ProductsTable"
+import { OrdersTable } from "../../components/admin/OrdersTable"
 
 
 export const AdminPage = () => {
 
-    const {data, isLoading} = useQuery({
-        queryKey:['productos'],
-        queryFn:getAllProducts
-    })
+    const [searchParams, setSearchParams] = useSearchParams()
 
+    const view = searchParams.get('view') || 'productos'
 
-    if(data)return (
-        
+    const toggleView = () => {
+      setSearchParams({ view: view === 'productos' ? 'ordenes' : 'productos' })
+    }
+
+    return (
+             
         <>
-            {isLoading && (
-                <h4 className="text-4xl text-slate-600 font-semibold">Cargando</h4>
-            )}
 
             <section className="flex justify-center gap-10 my-10 mx-auto ">
                 <Link to={'/admin/crear-producto'}
@@ -25,21 +24,14 @@ export const AdminPage = () => {
                     hover:bg-blue-300 transition-all transition-duration-900 "
                     >Agregar Producto
                 </Link>
-                <Link to={'/admin/ordenes'}
+                <button onClick={toggleView}
                     className="p-4 border border-slate-300 shadow-md rounded-lg text-xl font-semibold
-                    hover:bg-blue-300 transition-all transition-duration-900 "
-                    >Ver Ordenes
-                </Link>
-                <Link to={'/admin/crear-orden'}
-                    className="p-4 border border-slate-300 shadow-md rounded-lg text-xl font-semibold
-                    hover:bg-blue-300 transition-all transition-duration-900 "
-                    >Nueva Orden
-                </Link>
+                    hover:bg-blue-300 transition-all transition-duration-900 hover:cursor-pointer"
+                    >{  view === 'productos' ? 'Ver Ordenes' : 'Ver Productos'}
+                </button>
             </section>
 
-            <div className="space-y-3 ">
-                {data.map((p) => ( <AdminProductCard key={p.id} producto={p}/> ))}
-            </div>
+            {view === 'productos' ? <ProductsTable /> : <OrdersTable />}
 
         
         </>

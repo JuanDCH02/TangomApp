@@ -9,6 +9,7 @@ import { ConfirmDelete } from "./components/forms/ConfirmDelete";
 import { CreateProductPage } from "./pages/Admin/CreateProductPage";
 import { EditProductPage } from "./pages/Admin/EditProductPage";
 import { OrderPanel } from "./components/order/OrderPanel";
+import { OrderDetail } from "./components/order/OrderDetail";
 
 
 
@@ -24,6 +25,7 @@ export const router = () => {
                         <Route path="/donde-estamos" element={ <WhereAre/> } />
                         <Route path="/cotizacion" element={ <OrderPanel/> } />
                         <Route path="/admin" element={ <AdminPage/> } />
+                        <Route path="/admin/orden/:id" element={ <OrderDetail/> } />
                         <Route path="/admin/crear-producto" element={ <CreateProductPage/> } />
                         <Route path="/admin/editar-producto/:id" element={ <EditProductPage/> } />
                         <Route path="/admin/eliminar-producto/:id" element={ <ConfirmDelete/> } />
