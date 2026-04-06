@@ -6,9 +6,11 @@ import type { ProductFormData } from "../types";
 
 
 
-export const getAllProducts = async()=> {
+export const getAllProducts = async(category? : number)=> {
     try {
-        const {data} = await api('/products')
+        const url = category ? `/products?categoryId=${category}` : `/products`
+        
+        const {data} = await api(url)
         const res = ProductListSchema.safeParse(data)
         if(!res.success){
             console.error(res.error); 

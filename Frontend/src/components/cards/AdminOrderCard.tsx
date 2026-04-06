@@ -21,6 +21,7 @@ export const AdminOrderCard = ({order} : OrderCard) => {
                     >Orden de: {order.email} 
                 </h3>
                 <div className="flex gap-5">
+                    <p> #{order.id} </p>
                     <p> precio: ${`${order.total.toFixed(2)}`} </p>
                     <p> creada el: { formatDate(order.createdAt) } </p>
                 </div>

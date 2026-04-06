@@ -1,8 +1,6 @@
 import { useQuery } from "@tanstack/react-query"
 import { getAllProducts } from "../services/product.service"
 import { DashboardProductCard } from "../components/cards/DashboardProductCard"
-import type { Order, Product } from "../types"
-import { useEffect, useState } from "react"
 
 
 
@@ -12,7 +10,7 @@ export const HomePage = () => {
     
     const {data, isLoading} = useQuery({
         queryKey:['productos'],
-        queryFn:getAllProducts
+        queryFn:()=>getAllProducts()
     })
 
 

@@ -1,5 +1,5 @@
 
-import { prisma } from "../lib/prisma";
+import { prisma, OrderStatus } from "../lib/prisma";
 import { Request, Response } from "express";
 
 
@@ -55,7 +55,7 @@ export class OrderController {
                 where: { id },
                 data: { status },
             });
-            return res.json(order);
+            return res.status(200).send('Estado actualizado');
         } catch (err) {
             console.error(err);
             return res.status(500).json({ error: 'No se puedo actualizar el estado' });
@@ -64,10 +64,10 @@ export class OrderController {
 
     static getAllOrders = async (req: Request, res: Response) => {
         try {
+            const { status } = req.query;
             const orders = await prisma.order.findMany({
-                include: {
-                    items: true,
-                },
+                where: status ? { status: status as OrderStatus } : undefined,
+                include: { items: true },
             });
             return res.json(orders);
         } catch (err) {

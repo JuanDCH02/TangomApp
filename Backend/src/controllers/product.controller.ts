@@ -38,12 +38,17 @@ export default class ProductController {
         }
     }
 
-    static getAllProducts = async(req: Request, res: Response) => {
+    static getAllProducts = async (req: Request, res: Response) => {
+
+        const { categoryId } = req.query
+
         const products = await prisma.product.findMany({
-            include:{ category: true }
+            where: categoryId ? { categoryId: Number(categoryId) } : undefined,
+            include: { category: true }
         })
+
         return res.json(products)
-    };
+    }   ;
 
     static getProductById = async(req: Request, res: Response) => {
         const product = await prisma.product.findUnique({

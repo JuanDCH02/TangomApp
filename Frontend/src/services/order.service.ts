@@ -6,9 +6,10 @@ import type { OrderItem } from "../types";
 
 
 
-export const getAllOrders = async()=> {
+export const getAllOrders = async(status: string)=> {
     try {
-        const {data} = await api('/orders')
+        const url = status ? `/orders?status=${status}` : `/orders`
+        const {data} = await api(url)
         const res = OrderListSchema.safeParse(data)
         if(!res.success){
             console.error(res.error); 
@@ -77,7 +78,7 @@ export const createOrder = async ({items, email} : { items: OrderItem[], email: 
 
 export const createOrderNote = async ({id, content} : { id: number, content: string }) => {
     
-     try {
+    try {
         const {data} = await api.post<string>(`/orders/${id}/notes`, {content})
         return data 
         
@@ -85,5 +86,17 @@ export const createOrderNote = async ({id, content} : { id: number, content: str
         if(isAxiosError(error) && error.response){
             throw new Error(error.response.data.error)
         }
+    }
+}
+
+export const changeStatusOrder = async ({id, status} : { id: number, status: string }) => {
+    try {
+            const {data} = await api.patch<string>(`/orders/${id}/status`, {status})
+            return data 
+
+        } catch (error) {
+            if(isAxiosError(error) && error.response){
+                throw new Error(error.response.data.error)
+            }
     }
 }
