@@ -41,7 +41,7 @@ export const AdminPage = () => {
                         value="" defaultChecked>Categorias</option>
                         {data?.map((category) => 
                             <option 
-                                value={category.id} 
+                                value={category.id} key={category.id}
                                 className="p-2 border border-slate-300 rounded font-medium">
                                 {category.name}
                             </option> 

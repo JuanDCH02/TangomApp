@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form"
 import type { ProductFormData } from "../../types"
 import { useQuery } from "@tanstack/react-query"
 import { getCategories } from "../../services/category.service"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 
 
 type Props = {
@@ -13,12 +13,34 @@ type Props = {
 
 export const ProductForm = ({ defaultValues, onSubmit, text }: Props) => {
 
-    const { register, reset, handleSubmit, formState: {errors} } = useForm<ProductFormData>({defaultValues})
+    const [preview, setPreview] = useState("")
+
+    const { register, reset, handleSubmit, setValue, formState: {errors} } = useForm<ProductFormData>({defaultValues})
 
     const { data } = useQuery({
         queryKey: ['categorias'],
         queryFn: getCategories
     })
+
+    const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0]
+        if (!file) return
+
+        const formData = new FormData()
+        formData.append("file", file)
+        formData.append("upload_preset", "productos_preset_tangomapp") // tu preset
+
+        const res = await fetch("https://api.cloudinary.com/v1_1/dhpxh63m1/image/upload", {
+            method: "POST",
+            body: formData
+        })
+
+        const data = await res.json()
+
+        // seteás la URL en el form
+        setValue("imageUrl", data.secure_url)
+        setPreview(data.secure_url)
+    }
 
     useEffect(() => {
         if (defaultValues) {
@@ -52,11 +74,14 @@ export const ProductForm = ({ defaultValues, onSubmit, text }: Props) => {
                 {errors.price && <p className="text-red-400 font-semibold italic">El precio es requerido</p>}
 
                 <label htmlFor="imageUrl">Imagen del Producto:</label> 
-                <input type="text" id='imageUrl' placeholder="Imagen del Producto"
+                <input type="file" accept="image/*" id='imageUrl' placeholder="Imagen del Producto"
                     className="my-2 p-2 bg-white border rounded-lg w-full"
-                    {...register ("imageUrl", { required: true })}
+                    onChange={handleImageUpload}
 
                 />
+                {preview && (
+                    <img src={preview} className="w-32 h-32 object-cover rounded" />
+                )}
                 {errors.imageUrl && <p className="text-red-400 font-semibold italic">La imagen es requerida</p>}
 
                 <div className="grid md:grid-cols-2 gap-4 ">

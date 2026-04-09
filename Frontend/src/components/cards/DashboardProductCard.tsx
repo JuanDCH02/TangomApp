@@ -16,7 +16,7 @@ export const DashboardProductCard = ( {producto} : ProductCard ) => {
         <div className="h-100 w-75 mx-auto items-center p-3 border space-y-3 bg-blue-100 border-slate-300 rounded-lg hover:shadow-md">
             
             <div>
-                <img src="../../../public/poly v.webp" className="h-50 rounded" alt="producto-img" />
+                <img src={producto.imageUrl} className="h-50 rounded mx-auto " alt="producto-img" />
 
             </div>
             

@@ -15,7 +15,7 @@ export const AdminProductCard = ({producto} : ProductCard) => {
         <div className="flex justify-between w-2/3 mx-auto items-center p-3 border border-slate-300 rounded-lg hover:shadow-md hover:bg-slate-100
             hover:cursor-pointer">
 
-            <img src="../../../public/poly v.webp" height={100} width={90} className="rounded" alt="producto-img" />
+            <img src={producto.imageUrl} height={100} width={90} className="rounded mx-1" alt="producto-img" />
             
             <div>
 

@@ -31,7 +31,7 @@ export default class ProductController {
                 where:{ id: Number(req.params.id) },
                 data: { name, price, stock, imageUrl, categoryId }
             })
-            return res.json({ message: 'Producto actualizado' });
+            return res.json( 'Producto actualizado' );
 
         } catch (error) {
             return res.status(400).json({ error: 'No se pudo actualizar el producto' });
